@@ -1,0 +1,22 @@
+<div class="container">
+  <h2 style="text-align: center"> All Flight Details </h2>
+  <div class="row">
+    <div class="col-md-3" *ngFor="let flight of flights">
+      <div class="ibox">
+        <div class="ibox-content product-box">
+          <div class="product-imitation">
+            {{flight.name}}
+          </div>
+          <div class="product-desc">
+            <span class="product-price"> {{flight.price}} </span>
+            <div class="product-name">From: {{flight.origin_city}} <small class="text-muted"> {{flight.departure_date | date}} </small></div>
+            <div class="product-name">To: {{flight.destination_city}} <small class="text-muted"> {{flight.arrival_date | date}} </small></div>
+            <div class="text-muted">Total Seat: {{flight.total_seat}} Booked Seat: {{flight.booked_seat}}</div>
+            <div class="text-align">Departure Time: {{flight.departure_time}}</div>
+            <div class="text-align">Arrival Time: {{flight.arrival_time}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

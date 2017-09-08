@@ -1,0 +1,24 @@
+<!-- Wrapper-->
+<div id="wrapper">
+  <div class="container">
+    <div class="info">
+      <h1>Flight Search Login</h1>
+    </div>
+  </div>
+  <div class="panel-body form">
+    <div class="thumbnail"><img src="../../assets/flightLogo.png" /></div>
+    <form class="form-horizontal" (ngSubmit)="onLogin()">
+      <div style="margin-bottom: 25px" class="input-group">
+        <span class="input-group-addon"><i class="fa fa-envelope-o fa-x"></i></span>
+        <input id="login-username" [(ngModel)]="user.emailId" type="email" class="form-control" name="emailId" placeholder="Email Id" required="required">
+      </div>
+
+      <div style="margin-bottom: 25px" class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key fa-x"></i></span>
+        <input id="login-password" type="password" [(ngModel)]="user.password" name="password" class="form-control" placeholder="Password" required="required">
+      </div>
+      <button type="submit">login</button>
+      <p class="message">Not registered? <a class="btn btn-sm btn-white btn-block" [routerLink]="['/register']">Create an account</a></p>
+    </form>
+  </div>
+</div>

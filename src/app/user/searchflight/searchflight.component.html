@@ -1,0 +1,157 @@
+<div class="col-lg-12">
+  <div class="row">
+    <div class="col-lg-12" style="width: 100%">
+      <div class="col-md-3" style="float: left; width: 20%; background-color: azure">
+        <table class="table">
+          <tr>
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="active"><a data-toggle="tab" href="#oneway" (click)="clearReturn()">One Way</a></li>
+              <li><a data-toggle="tab" href="#return" (click)="clearOneWay()">Return</a></li>
+            </ul>
+          </tr>
+          <tr>
+            <div class="tab-content">
+              <div id="oneway" class="tab-pane fade in active" style="align-content: center">
+                <form class="form-horizontal" (ngSubmit)="onOneway()" id="oneWayForm">
+                  <br />
+                  <div data-type="horizontal">
+                    <label>Origin City:</label>
+                    <select [(ngModel)]="onewayflight.origin_city" name="origin_city" required="required">
+                    <option *ngFor="let origin of origins" [value]="origin">{{origin}}</option>
+                  </select></div>
+                  <br />
+                  <div class="column small-12 large-2">
+                    <label class="sbw_light">Destination City: </label>
+                    <select [(ngModel)]="onewayflight.destination_city" name="destination_city" required="required">
+                    <option *ngFor="let destination of destinations" [value]="destination">{{destination}}</option>
+                  </select></div>
+                  <br />
+                  <div class="column small-12 large-2" data-type="horizontal">
+                    <label class="sbw_light">Departure Date: </label>
+                    <input type="date" name="departure_date" [(ngModel)]="onewayflight.departure_date" id="departure_date" required="required"
+                    />
+                  </div>
+                  <button type="submit" class="bouton-contact">Search</button>
+                </form>
+                <div style="margin-top: 10%" id="oneWaySlider">
+                  <span style="display: inline-block" id="minOneWay"> </span>
+                  <input style="display: inline-block; width: 200px;" type="range" id="myRangeOneWay" (change)="valRecOneWay()">
+                  <span style="display: inline-block" id="maxOneWay"> </span>
+                </div>
+              </div>
+              <div id="return" class="tab-pane fade">
+                <form class="form-horizontal" (ngSubmit)="onReturn()" id="returnForm">
+                  <br />
+                  <div data-type="horizontal">
+                    <label>Origin City:</label>
+                    <select [(ngModel)]="returnflight.origin_city" name="origin_city" required="required">
+                    <option *ngFor="let origin of origins" [value]="origin">{{origin}}</option>
+                  </select></div>
+                  <br />
+                  <div class="column small-12 large-2">
+                    <label class="sbw_light">Destination City: </label>
+                    <select [(ngModel)]="returnflight.destination_city" name="destination_city" required="required">
+                    <option *ngFor="let destination of destinations" [value]="destination">{{destination}}</option>
+                  </select></div>
+                  <br />
+                  <div class="column small-12 large-2" data-type="horizontal">
+                    <label class="sbw_light">Departure Date: </label>
+                    <input type="date" name="departure_date" [(ngModel)]="returnflight.departure_date" id="departure_date" required="required"
+                    />
+                  </div>
+                  <br />
+                  <div class="column small-12 large-2" data-type="horizontal">
+                    <label class="sbw_light">Return Date: </label>
+                    <input type="date" name="return_date" [(ngModel)]="returnflight.return_date" id="return_date" required="required" />
+                  </div>
+                  <button type="submit" class="bouton-contact">Search</button>
+                </form>
+                <div style="margin-top: 10%" id="returnSlider">
+                  <span style="display: inline-block" id="minReturn"> </span>
+                  <input style="display: inline-block; width: 200px;" type="range" id="myRangeReturn" (change)="valRecReturn()">
+                  <span style="display: inline-block" id="maxReturn"> </span>
+                </div>
+                <!--<div style="margin-top: 10%">
+                  <label class="sbw_light">Filter On Price: </label>
+                  <input type="range" name="slider" id="returnSlider" min="0" max="100" data-show-value="true" data-popup-enabled="true" onchange="showValue(this.value)" />
+                  
+                </div>-->
+              </div>
+            </div>
+            <!--<div style="margin-top: 10%">
+              <label class="sbw_light">Filter On Price: </label>
+              <input type="range" name="points" id="points" min="0" max="100" data-show-value="true" data-popup-enabled="true" />
+              <!--<nouislider [connect]="true" [min]="0" [max]="15"></nouislider>
+            </div>-->
+            <!--<div style="margin-top: 10%">
+              Here Slider Should Come
+              <md-slider min="1" max="5" step="0.5" value="1.5"></md-slider>
+              <p class="value-box">
+                Values: <span class="value-span" id="range-1-start">9</span> - <span class="value-span" id="range-1-end">21</span>
+              </p>
+            </div>-->
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-9" style="float: left; width: 80%; margin-bottom: 10%; background-color: blanchedalmond">
+        <div class="col-lg-12">
+          <h2 style="text-align: center; font-weight: bold; margin-bottom: 5%"> Flight Searched Details </h2>
+          <div class="row">
+            <div class="col-md-3" *ngFor="let flight of flights">
+              <div *ngIf="!flight.name==''" class="ibox">
+                <div class="ibox-content product-box">
+                  <div class="product-imitation">
+                    {{flight.name}}
+                  </div>
+                  <div class="product-desc">
+                    <span class="product-price"> {{flight.price}} </span>
+                    <div class="product-name">From: {{flight.origin_city}} <small class="text-muted"> {{flight.departure_date | date}} </small></div>
+                    <div class="product-name">To: {{flight.destination_city}} <small class="text-muted"> {{flight.arrival_date | date}} </small></div>
+                    <!--<div class="text-muted">Total Seat: {{flight.total_seat}} Booked Seat: {{flight.booked_seat}}</div>-->
+                    <div class="text-align">Departure Time: {{flight.departure_time}}</div>
+                    <div class="text-align">Arrival Time: {{flight.arrival_time}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 ibox">
+                <div class="col-md-6" *ngFor="let flight_return of flights1" style="margin-bottom: 5%">
+                  <div class="ibox-content product-box">
+                    <div class="product-imitation">
+                      <div style="display: inline-block">Ongoing Flight:- {{flight_return.ongoing_flight_name}} </div>
+                      <div style="display: inline-block; margin-left: 20%">Return Flight:- {{flight_return.return_flight_name}}</div>
+                    </div>
+                    <div class="product-desc">
+                      <span class="product-price"> {{flight_return.price}} </span>
+                      <div class="product-name">
+                        <div style="display: inline-block">Ongoing Flight Details</div>
+                        <div style="display: inline-block; margin-left: 30%">Return Flight Details</div>
+                      </div>
+                      <div class="product-name">
+                        <div style="display: inline-block">From: {{flight_return.ongoing_flight_origin_city}} <small class="text-muted"> {{flight_return.ongoing_flight_departure_date | date}} </small></div>
+                        <div style="display: inline-block; margin-left: 30%">From: {{flight_return.return_flight_origin_city}} <small class="text-muted"> {{flight_return.return_flight_departure_date | date}} </small></div>
+                      </div>
+                      <div class="product-name">
+                        <div style="display: inline-block">From: {{flight_return.ongoing_flight_destination_city}} <small class="text-muted"> {{flight_return.ongoing_flight_arrival_date | date}} </small></div>
+                        <div style="display: inline-block; margin-left: 30%">From: {{flight_return.return_flight_destination_city}} <small class="text-muted"> {{flight_return.return_flight_arrival_date | date}} </small></div>
+                      </div>
+                      <div class="text-align">
+                        <div style="display: inline-block">Departure Time:: {{flight_return.ongoing_flight_departure_time}}</div>
+                        <div style="display: inline-block; margin-left: 35%">Departure Time: {{flight_return.return_flight_departure_time}}</div>
+                      </div>
+                      <div class="text-align">
+                        <div style="display: inline-block">Arrival Time:: {{flight_return.ongoing_flight_arrival_time}}</div>
+                        <div style="display: inline-block; margin-left: 40%">Arrival Time: {{flight_return.return_flight_arrival_time}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="container">
+  <h2 style="text-align: center"> Add Flight Form </h2>
+  <form class="form-horizontal" (ngSubmit)="onAddFlight()">
+    <div class="leftcontact">
+      <div class="form-group">
+        <p>Flight Name <span>*</span></p>
+        <span class="icon-case"><i class="glyphicon glyphicon-plane"></i></span>
+        <input type="text" name="name" [(ngModel)]="flight.name" id="name" data-rule="required" placeholder="Name" />
+      </div>
+
+      <div class="form-group">
+        <p>Origin City <span>*</span></p>
+        <span class="icon-case"><i class="fa fa-map-marker"></i></span>
+        <input type="text" name="origin_city" id="origin_city" [(ngModel)]="flight.origin_city" required="required" placeholder="Origin City" />
+      </div>
+
+      <div class="form-group">
+        <p>Destination City <span>*</span></p>
+        <span class="icon-case"><i class="fa fa-map-marker"></i></span>
+        <input type="text" name="destination_city" [(ngModel)]="flight.destination_city" id="destination_city" required="required" placeholder="Destination City"
+        />
+      </div>
+
+      <div class="form-group">
+        <p>Total Seat <span>*</span></p>
+        <span class="icon-case"><i class="fa fa-wheelchair"></i></span>
+        <input type="number" name="total_seat" [(ngModel)]="flight.total_seat" id="total_seat" required="required" />
+      </div>
+
+      <div class="form-group">
+        <p>Price/Seat <span>*</span></p>
+        <span class="icon-case"><i class="fa fa-inr"></i></span>
+        <input type="number" name="price" [(ngModel)]="flight.price" id="price" required="required" />
+      </div>
+    </div>
+
+    <div class="rightcontact">
+
+      <div class="form-group">
+        <p>Departure Date <span>*</span></p>
+        <span class="icon-case"><i class="fa fa-calendar"></i></span>
+        <input type="date" name="departure_date" [(ngModel)]="flight.departure_date" id="departure_date" required="required" />
+      </div>
+
+      <div class="form-group">
+        <p>Arrival Date <span>*</span></p>
+        <span class="icon-case"><i class="fa fa-calendar"></i></span>
+        <input type="date" name="arrival_date" [(ngModel)]="flight.arrival_date" id="arrival_date" required="required" />
+      </div>
+
+      <div class="form-group">
+        <p>Departure Time <span>*</span></p>
+        <span class="icon-case"><i class="fa fa-clock-o"></i></span>
+        <input type="time" name="departure_time" [(ngModel)]="flight.departure_time" id="departure_time" required="required" />
+      </div>
+
+      <div class="form-group">
+        <p>Arrival Time <span>*</span></p>
+        <span class="icon-case"><i class="fa fa-clock-o"></i></span>
+        <input type="time" name="arrival_time" [(ngModel)]="flight.arrival_time" id="arrival_time" required="required" />
+      </div>
+    </div>
+    <button type="submit" class="bouton-contact">Add</button>
+  </form>
+</div>
